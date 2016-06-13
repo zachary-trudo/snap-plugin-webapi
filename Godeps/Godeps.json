@@ -1,0 +1,11 @@
+{
+	"ImportPath": "github.com/intelsdi-x/snap-plugin-api",
+	"GoVersion": "go1.6",
+	"GodepVersion": "v74",
+	"Deps": [
+		{
+			"ImportPath": "github.com/julienschmidt/httprouter",
+			"Rev": "8c199fb6259ffc1af525cc3ad52ee60ba8359669"
+		}
+	]
+}
