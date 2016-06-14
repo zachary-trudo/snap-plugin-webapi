@@ -1,7 +1,12 @@
+sudo: false
 language: go
 go:
-  - 1.6.2
+- 1.6.2
 install:
-  - go get -u github.com/kardianos/govendor
-  - govendor sync
+- go get -u github.com/kardianos/govendor
+- govendor sync
 script: go test ./...
+notifications:
+  email: false
+  slack:
+    secure: ELKEJX9SmlQl/GJM4Azd+KscDyIWYKMFC8hL+Ym38Xu4PWI/z38n7gnhlMrvHbk8CUEfyOu0Tv1TG+u2dH2t9Se39bIg8CJm32B7sG36f3h0uraSK2IMcR3x/58dXihU0I32AANvqv6aweDpO8LVKoTP8h8vIDfvIXBn82vUd+JZha6IeyfpsXXPJ019HjOXaxIU3+DNrnQ28NDLEfZvvAx20kb+WvllUXpCYPyCyMJ0AsW6hFTVeFChy/Fu8mVyZqPMRVilUZcfvTHDLQ91Aa0uMlaaelEq1g0qJ4bRObH73NU7iWQJMzz52jbdm9XSAHEPeU2B8ubmUQckhsGaIBC6qK4mg8mhPDcO1aYop5bZea6eMijgUlfHNyG8LsJedtTs5g+CLm0r99b4QYywt4jHqag/P7sbwS0K/yE5tcRjwJfWdbtx3womMRuAUoL0oqL5l74cTJ9PqvaMguZlo+fbHdFNW+ixeIjQZDwzycub8rgHhQPbM2cVTvDBgliHZKBcy45fpl9donA1OrVSrG3mR+9OlH4mhenDfjXjqlDL3umEuMT3nMySf4SEGHQXBJaEHiI8L/kMQ8HTpVCaSyvcfzzhHgdJ8SATRVOV+YWK4dV+LjAbCCdpIomI4Qd0Fz+JIMGap45Kk8u/ItxYhgsfbuSqTIS6Y8qIS8OhNm8=
