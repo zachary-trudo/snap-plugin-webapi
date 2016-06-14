@@ -1,0 +1,1 @@
+web: snap-plugin-api

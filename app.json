@@ -1,0 +1,13 @@
+{
+  "name": "snap-plugin-api",
+  "description": "Snap plugin api service",
+  "keywords": [
+    "go",
+    "snap",
+    "plugin"
+  ],
+  "image": "heroku/go:1.6",
+  "mount_dir": "src/github.com/intelsdi-x/snap-plugin-api",
+  "website": "http://github.com/intelsdi-x/snap-plugin-api",
+  "repository": "http://github.com/intelsdi-x/snap-plugin-api"
+}
