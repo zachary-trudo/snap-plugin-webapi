@@ -59,18 +59,15 @@ func ListPlugins(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	if err != nil {
 		fmt.Fprint(w, err)
 	} else {
-		//fmt.Fprint(w, string(file))
-
-		plugin_type := ps.ByName("type")
-
+		plugin_type := strings.ToLower(ps.ByName("type"))
 		if plugin_type != "" {
 			plugins = Filter(plugins, func(v Plugin) bool {
 				return strings.Contains(v.Type, plugin_type)
 			})
 		}
+
 		output, _ := json.MarshalIndent(plugins, "", "    ")
 		fmt.Fprint(w, string(output))
-		//fmt.Printf("%#v", plugins)
 	}
 }
 
