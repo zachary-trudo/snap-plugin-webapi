@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 )
 
@@ -78,5 +79,9 @@ func main() {
 	router.GET("/plugins/:type", ListPlugins)
 	router.GET("/plugin/:name", ListPlugin)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	var port = os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
