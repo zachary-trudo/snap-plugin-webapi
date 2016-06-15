@@ -16,7 +16,7 @@ type Plugin struct {
 	FullName    string `json:"full_name"`
 	Type        string `json:"type"`
 	Owner       string `json:"owner"`
-	Description string `json: "desription"`
+	Description string `json:"description"`
 	URL         string `json:"url"`
 	Forks       int    `json:"fork_count"`
 	Stars       int    `json:"star_count"`
