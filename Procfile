@@ -1,1 +1,1 @@
-web: snap-plugin-api
+web: snap-plugin-webapi
