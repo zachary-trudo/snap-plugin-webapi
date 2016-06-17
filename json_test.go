@@ -11,16 +11,18 @@ func TestJSON(t *testing.T) {
 	buf, err := ioutil.ReadFile("plugins.json")
 	if err != nil {
 		fmt.Println(err)
+		t.Fail()
 
 	}
-	s := string(buf)
-	if !isJSON(s) {
+	err = isJSON(buf)
+	if err != nil {
+		fmt.Println(err)
 		t.Fail()
 	}
 
 }
 
-func isJSON(str string) bool {
+func isJSON(buf []byte) error {
 	var temp interface{}
-	return json.Unmarshal([]byte(str), &temp) == nil
+	return json.Unmarshal(buf, &temp)
 }
