@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-// struct holding user info
+// struct holding repo info
 type Plugin struct {
 	Name        string `json:"name"`
 	FullName    string `json:"full_name"`
@@ -28,11 +28,8 @@ type Plugin struct {
 
 func main() {
 	client := github.NewClient(nil)
-	opt := &github.RepositoryListByOrgOptions{Type: "public"}
-	repos, _, _ := client.Repositories.ListByOrg("intelsdi-x", opt)
-	for repo := range repos {
-		fmt.Println(repo)
-	}
+	var links []string
+
 	response, err := http.Get("https://raw.githubusercontent.com/intelsdi-x/snap/master/docs/PLUGIN_CATALOG.md")
 	if err != nil {
 		log.Fatal(err)
@@ -44,8 +41,23 @@ func main() {
 	//fmt.Printf("%s", catalog)
 	sCatalog := strings.Split(string(bCatalog), "\n")
 	for _, line := range sCatalog {
-		if strings.HasPrefix(line, "##") {
-			fmt.Println(line)
+		if strings.HasPrefix(line, "|") {
+			splitLine := strings.Split(line, "|")
+			if len(splitLine) > 3 {
+				link := strings.Split(splitLine[4], "(")
+				if len(link) > 1 {
+					links = append(links, strings.Split(link[1], ")")[0])
+				}
+			}
 		}
+	}
+	fmt.Println(links)
+	for _, link := range links {
+		link := strings.Split(link, "/")
+		repo, _, err := client.Repositories.Get(link[len(link)-2], link[len(link)-1])
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(repo.String())
 	}
 }
