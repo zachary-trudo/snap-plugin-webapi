@@ -4,12 +4,12 @@ import (
 	//"encoding/json"
 	"fmt"
 	//"github.com/julienschmidt/httprouter"
-	//"io/ioutil"
-	//"log"
-	//"net/http"
+	"io/ioutil"
+	"log"
+	"net/http"
 	//"os"
-	//"strings"
 	"github.com/google/go-github/github"
+	"strings"
 )
 
 // struct holding user info
@@ -30,7 +30,22 @@ func main() {
 	client := github.NewClient(nil)
 	opt := &github.RepositoryListByOrgOptions{Type: "public"}
 	repos, _, _ := client.Repositories.ListByOrg("intelsdi-x", opt)
-	for _, repo := range repos {
-		fmt.Println(repo.String())
+	for repo := range repos {
+		fmt.Println(repo)
+	}
+	response, err := http.Get("https://raw.githubusercontent.com/intelsdi-x/snap/master/docs/PLUGIN_CATALOG.md")
+	if err != nil {
+		log.Fatal(err)
+	}
+	bCatalog, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	//fmt.Printf("%s", catalog)
+	sCatalog := strings.Split(string(bCatalog), "\n")
+	for _, line := range sCatalog {
+		if strings.HasPrefix(line, "##") {
+			fmt.Println(line)
+		}
 	}
 }
