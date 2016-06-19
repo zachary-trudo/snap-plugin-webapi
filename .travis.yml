@@ -4,6 +4,8 @@ go:
 - 1.6.2
 install:
 - go get -u github.com/kardianos/govendor
+- go get -u golang.org/x/oauth2
+- go get -u github.com/google/go-github/github
 - govendor sync
 script: go test ./...
 deploy:
