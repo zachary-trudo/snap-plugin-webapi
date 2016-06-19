@@ -3,10 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/google/go-github/github"
 	"github.com/julienschmidt/httprouter"
-	"golang.org/x/oauth2"
-	githuboauth "golang.org/x/oauth2/github"
 	"io/ioutil"
 	"log"
 	"net/http"
